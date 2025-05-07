@@ -48,6 +48,12 @@ const deleteHandler=(studentId)=>{
   const updateStudent= students.filter((student)=>student.id!=studentId)
   setStudents(updateStudent)
 }
+const makePresentHandler=()=>{
+  
+}
+const makeAbsentHandler=()=>{
+
+}
   
 
   return (
