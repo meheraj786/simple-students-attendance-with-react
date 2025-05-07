@@ -60,18 +60,36 @@ const deleteHandler=(studentId)=>{
       <h2>All Students</h2>
       {students.map((student)=>(
         <li key={student.id}><span>{student.name}</span>
+        <div style="display:flex;">
         <button onClick={()=>editHandler(student)}>Edit</button>
         <button onClick={()=>deleteHandler(student.id)}>Delete</button>
         <button>Make Present</button>
         <button>Make Absent</button>
+        </div>
         </li>
       ))}
     </div>
     <div className="present-students list">
       <h2>Present Students</h2>
+      <ul>
+        {students.filter((student)=>student.isPresent===true).map((item)=>(
+          <li key={item.id}>
+            <span>{item.name}</span>
+            <button>Accidently Added</button>
+          </li>
+        ))}
+      </ul>
     </div>
     <div className="absent-students list">
       <h2>Absent Students</h2>
+            <ul>
+        {students.filter((student)=>student.isPresent===false).map((item)=>(
+          <li key={item.id}>
+            <span>{item.name}</span>
+            <button>Accidently Added</button>
+          </li>
+        ))}
+      </ul>
     </div>
     </>
   );
