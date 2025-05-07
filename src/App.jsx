@@ -48,10 +48,49 @@ const deleteHandler=(studentId)=>{
   const updateStudent= students.filter((student)=>student.id!=studentId)
   setStudents(updateStudent)
 }
-const makePresentHandler=()=>{
-  
+const makePresentHandler=(student)=>{
+  if (student.isPresent!=undefined) {
+    return alert(`This student is already ${student.isPresent==true ? "in present list": "already in absant list"}`)
+  }
+  const updateStudentList= students.map((item)=>{
+    if (item.id==student.id) {
+      return {...item, isPresent: true};
+    }
+    return
+  })
+  setStudents(updateStudentList)
 }
-const makeAbsentHandler=()=>{
+
+const makeAbsentHandler=(student)=>{
+
+  if (student.isPresent!=undefined) {
+    return alert(`This student is already ${student.isPresent==true ? "in present list": "already in absant list"}`)
+  }
+  const updateStudentList= students.map((item)=>{
+    if (item.id==student.id) {
+      return {...item, isPresent: false};
+    }
+    return
+  })
+  setStudents(updateStudentList)
+}
+const toggleList=(student)=>{
+  const updateStudentList= students.map((item)=>{
+    if (item.id==student.id) {
+      return {...item, isPresent: !item.isPresent};
+    }
+    return
+  })
+  setStudents(updateStudentList)
+}
+const deleteFromList=(student)=>{
+  const updateStudentList= students.map((item)=>{
+    if (item.id==student.id) {
+      return {...item, isPresent: undefined};
+    }
+    return
+  })
+  setStudents(updateStudentList)
 
 }
   
@@ -66,11 +105,11 @@ const makeAbsentHandler=()=>{
       <h2>All Students</h2>
       {students.map((student)=>(
         <li key={student.id}><span>{student.name}</span>
-        <div style="display:flex;">
+        <div>
         <button onClick={()=>editHandler(student)}>Edit</button>
         <button onClick={()=>deleteHandler(student.id)}>Delete</button>
-        <button>Make Present</button>
-        <button>Make Absent</button>
+        <button onClick={()=>makePresentHandler(student)}>Make Present</button>
+        <button onClick={()=>makeAbsentHandler(student)}>Make Absent</button>
         </div>
         </li>
       ))}
@@ -81,7 +120,8 @@ const makeAbsentHandler=()=>{
         {students.filter((student)=>student.isPresent===true).map((item)=>(
           <li key={item.id}>
             <span>{item.name}</span>
-            <button>Accidently Added</button>
+            <button onClick={()=> toggleList(item)}>Accidently Added</button>
+            <button onClick={()=>deleteFromList(item)}>Delete</button>
           </li>
         ))}
       </ul>
@@ -92,7 +132,8 @@ const makeAbsentHandler=()=>{
         {students.filter((student)=>student.isPresent===false).map((item)=>(
           <li key={item.id}>
             <span>{item.name}</span>
-            <button>Accidently Added</button>
+            <button onClick={()=> toggleList(item)}>Accidently Added</button>
+            <button onClick={()=>deleteFromList(item)}>Delete</button>
           </li>
         ))}
       </ul>
