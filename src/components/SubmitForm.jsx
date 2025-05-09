@@ -5,7 +5,8 @@ const SubmitForm = () => {
   const {submitHandler,studentName,changeNameHandler,editMode   }= useContext(StudentContext)
   return (
     <form onSubmit={submitHandler}>
-    <input type="text" value={studentName} onChange={changeNameHandler} />
+      <h1>Student Attendence</h1>
+    <input type="text" placeholder='Enter Student Name' value={studentName} onChange={changeNameHandler} />
     <button type="submit">
       {editMode ? "Update Student" : "Add Student"}
     </button>

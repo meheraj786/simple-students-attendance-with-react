@@ -4,6 +4,7 @@ import AllStudentsList from "./components/AllStudentsList";
 import PresentStudents from "./components/PresentStudents";
 import AbsentStudentsList from "./components/AbsentStudentsList";
 import { StudentProvider } from "./context/StudentProvider";
+import Container from "./components/Container";
 
 function App() {
 
@@ -13,10 +14,12 @@ function App() {
   return (
     <>
     <StudentProvider >
-    <SubmitForm/>
+<Container>
+<SubmitForm/>
     <AllStudentsList/>
     <PresentStudents/>
     <AbsentStudentsList/>
+</Container>
     </StudentProvider>
     </>
   );
