@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { StudentContext } from '../context/StudentProvider'
 
 const AllStudentsList = () => {
+  const {students,editHandler,deleteHandler,makePresentHandler,makeAbsentHandler}= useContext(StudentContext)
   return (
     <div className="all-students list">
     <h2>All Students</h2>

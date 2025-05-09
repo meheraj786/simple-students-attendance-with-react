@@ -1,6 +1,8 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { StudentContext } from '../context/StudentProvider'
 
 const PresentStudents = () => {
+  const {students,toggleList,deleteFromList}= useContext(StudentContext)
   return (
     <div className="present-students list">
     <h2>Present Students</h2>
